@@ -57,7 +57,7 @@ const props = defineProps({
             </a>
           </template>
         </td>
-          <td colspan="6">No scores available. The conversation was incomplete.</td> <!-- Placeholder for no scores -->
+          <td colspan="6">No scores available yet. The call may be in progress.</td> <!-- Placeholder for no scores -->
         </tr>
       </template>
 

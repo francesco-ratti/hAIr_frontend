@@ -33,13 +33,27 @@ const props = defineProps({
           </tr>
 
           <tr>
-            <td><label for="evaluationMetricsCSV">Evaluation Metrics (CSV):</label></td>
+            <td><label for="evaluationMetricCSV">Evaluation Metrics (Comma separated):</label></td>
             <td>
               <input
                 type="text"
-                id="evaluationMetricsCSV"
-                v-model="formData.evaluationMetricsCSV"
-                placeholder="Insert CSV here"
+                id="evaluationMetricCSV"
+                v-model="formData.evaluationMetricCSV"
+                placeholder="Insert Comma Separated Values"
+                required
+                class="form-control"
+              />
+            </td>
+          </tr>
+
+          <tr>
+            <td><label for="additionalQuestionsNumber">Follow-up questions (AI-Generated):</label></td>
+            <td>
+              <input
+                type="number"
+                id="additionalQuestionsNumber"
+                v-model="formData.additionalQuestionsNumber"
+                placeholder="Insert number"
                 required
                 class="form-control"
               />
@@ -52,7 +66,7 @@ const props = defineProps({
               <textarea
                 id="question"
                 v-model="formData.question"
-                rows="3"
+                rows="2"
                 required
                 class="form-control"
               ></textarea>
@@ -83,7 +97,7 @@ export default {
       formData: {
         number: '',
         locale: 'IT_IT', // Default value
-        evaluationMetricsCSV: '',
+        evaluationMetricCSV: '',
         question: ''
       }
     };
@@ -91,7 +105,7 @@ export default {
   methods: {
     async submitForm() {
       try {
-        const response = await axios.post('http://ratti.dynv6.net/question/new', JSON.stringify(this.formData), config);
+        const response = await axios.post('http://ratti.dynv6.net/question/new', JSON.stringify(this.formData), config); 	
         this.$emit('refresh-table')
       }
       catch (error) {
@@ -105,12 +119,11 @@ export default {
 <style scoped>
 .container {
   width: 100%;
-  justify-content: center;
-  align-items: center;
+
   padding-top: 1%;
   padding-bottom: 1%;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 15%;
+  padding-right: 15%;
 
 }
 
@@ -135,8 +148,7 @@ td {
 }
 
 td:first-child {
-  text-align: left;
-  padding-right: 20px;
+  text-align: left
 }
 
 textarea, input, select {

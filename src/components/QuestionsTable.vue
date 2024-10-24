@@ -18,6 +18,7 @@ const props = defineProps({
           <th>Locale</th>
           <th>Eval. metric</th>
           <th>Question</th>
+          <th>Follow up</th>
         </tr>
       </thead>
       <tbody>
@@ -27,6 +28,7 @@ const props = defineProps({
                 <td>{{ question.locale }}</td>
                 <td>{{ question.evaluationMetricCSV }}</td>
                 <td>{{ question.question }}</td>
+                <td>{{ question.additionalQuestionsNumber }}</td>
               </tr>
         </template>
       </tbody>
