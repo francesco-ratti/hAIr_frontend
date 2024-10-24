@@ -24,6 +24,8 @@ const props = defineProps({
           <th>Conversation</th>
           <th>Metric</th>
           <th>Score</th>
+          <th>Response Word count</th>
+          <th>vs. Average for Similar Questions</th>
           <th>Pos. Tone</th>
           <th>Neut. Tone</th>
           <th>Neg. Tone</th>
@@ -96,6 +98,8 @@ const props = defineProps({
           </td>
           <td>{{ score.predefinedQuestion.evaluationMetricCSV }}</td>
           <td>{{ score.metrics }}</td>
+          <td>{{ score.wordCount }}</td>
+          <td>{{ (score.wordCount/score.predefinedQuestion.averageResponsesWordCount)*100 }}%</td>
           <td>{{ score.positive }}</td>
           <td>{{ score.neutral }}</td>
           <td>{{ score.negative }}</td>
@@ -171,11 +175,11 @@ export default {
           try {
             const response = await axios.get(`http://ratti.dynv6.net/question/conversation/${call.id}/${score.predefinedQuestion.id}`, config);
             score.newQuestion = parseAndMergeResponse(response);
-            score.isExpanded = true;
           } catch (error) {
             console.error("Error fetching the conversation:", error);
           }
         }
+        score.isExpanded = true;
       }
     },
     /*
