@@ -90,7 +90,7 @@ const props = defineProps({
             {{ score.predefinedQuestion.question }}
             </template>
 
-            <a href="#" @click.prevent="toggleQuestionExpansion(user.locale, call, score)" style="color: #008000;">
+            <a href="#" @click.prevent="toggleQuestionExpansion(call, score)" style="color: #008000;">
               {{ score.isExpanded ? '...collapse...' : '...expand...' }}
             </a>
           </td>
@@ -161,7 +161,7 @@ export default {
         console.error('Error making new call:', error);
       }
     },
-    async toggleQuestionExpansion(locale, call, score) {
+    async toggleQuestionExpansion(call, score) {
       // If it's expanded, collapse it
       if (score.isExpanded) {
         score.isExpanded = false;
@@ -169,7 +169,7 @@ export default {
         // If not expanded, fetch the new content if not already fetched
         if (!score.newQuestion) {
           try {
-            const response = await axios.get(`http://ratti.dynv6.net/question/conversation/${locale}/${call.id}/${score.predefinedQuestion.number}`, config);
+            const response = await axios.get(`http://ratti.dynv6.net/question/conversation/${call.id}/${score.predefinedQuestion.id}`, config);
             score.newQuestion = parseAndMergeResponse(response);
             score.isExpanded = true;
           } catch (error) {
