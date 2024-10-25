@@ -105,7 +105,7 @@ export default {
   methods: {
     async submitForm() {
       try {
-        const response = await axios.post('http://ratti.dynv6.net/question/new', JSON.stringify(this.formData), config); 	
+        const response = await axios.post('http://localhost:8080/question/new', JSON.stringify(this.formData), config); 	
         this.$emit('refresh-table')
       }
       catch (error) {
@@ -122,8 +122,8 @@ export default {
 
   padding-top: 1%;
   padding-bottom: 1%;
-  padding-left: 15%;
-  padding-right: 15%;
+  padding-left: 20%;
+  padding-right: 20%;
 
 }
 

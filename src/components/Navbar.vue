@@ -8,7 +8,7 @@ const isActiveLink = (routePath) => {
 </script>
 
 <template>
-  <nav class="bg-lime-100 border-b border-lime-400">
+  <nav class="bg-master border-b border-accent">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="flex h-20 items-center justify-between">
         <div
@@ -27,8 +27,8 @@ const isActiveLink = (routePath) => {
                 to="/"
                 :class="[
                   isActiveLink('/')
-                    ? 'bg-lime-400'
-                    : 'hover:bg-gray-900 hover:text-white',
+                    ? 'bg-accent text-white'
+                    : 'hover:bg-accent hover:text-white',
                   'text-black',
                   'px-3',
                   'py-2',
@@ -41,8 +41,8 @@ const isActiveLink = (routePath) => {
                   to="/questions"
                   :class="[
                     isActiveLink('/questions')
-                      ? 'bg-lime-400'
-                      : 'hover:bg-gray-900 hover:text-white',
+                      ? 'bg-accent text-white'
+                      : 'hover:bg-accent hover:text-white',
                     'text-black',
                     'px-3',
                     'py-2',

@@ -46,6 +46,18 @@ const props = defineProps({
               />
             </td>
           </tr>
+          <tr>
+            <td><label for="phonenumber">Phone number:</label></td>
+            <td>
+              <input
+                type="text"
+                id="surname"
+                v-model="formData.phonenumber"
+                required
+                class="form-control"
+              />
+            </td>
+          </tr>
 
           <tr>
             <td><label for="locale">Locale:</label></td>
@@ -89,7 +101,7 @@ export default {
   methods: {
     async submitForm() {
       try {
-        const response = await axios.post('http://ratti.dynv6.net/candidate/new', JSON.stringify(this.formData), config);
+        const response = await axios.post('http://localhost:8080/candidate/new', JSON.stringify(this.formData), config);
         this.$emit('refresh-table')
       }
       catch (error) {
@@ -107,8 +119,8 @@ export default {
   align-items: center;
   padding-top: 1%;
   padding-bottom: 1%;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 20%;
+  padding-right: 20%;
 
 }
 

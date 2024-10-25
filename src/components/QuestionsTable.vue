@@ -48,7 +48,7 @@ export default {
     async fetchquestionData() {
       try {
         // Fetch question data from API (replace with your actual API URL)
-        const response = await axios.get('http://ratti.dynv6.net/question/all', {
+        const response = await axios.get('http://localhost:8080/question/all', {
         headers: { Authorization: `Bearer your_hardcoded_token` }
       });
         this.questionList = response.data; // Set the questions data

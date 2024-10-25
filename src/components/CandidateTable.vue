@@ -54,7 +54,7 @@ const props = defineProps({
           <td :rowspan="1">
           <template v-if="call.completed">Yes</template>
           <template v-else>No<br/>
-            <a href="#" @click.prevent="newCall(user.id)" style="color: #008000;">
+            <a href="#" @click.prevent="newCall(user.id)" class="text-accent">
               call again
             </a>
           </template>
@@ -76,7 +76,7 @@ const props = defineProps({
             
             <td :rowspan="call.scores.length"><template v-if="call.completed">Yes</template>
           <template v-else>No<br/>
-            <a href="#" @click.prevent="newCall(user.id)" style="color: #008000;">
+            <a href="#" @click.prevent="newCall(user.id)" class="text-accent">
               call again
             </a>
           </template></td>
@@ -92,7 +92,7 @@ const props = defineProps({
             {{ score.predefinedQuestion.question }}
             </template>
 
-            <a href="#" @click.prevent="toggleQuestionExpansion(call, score)" style="color: #008000;">
+            <a href="#" @click.prevent="toggleQuestionExpansion(call, score)" class="text-accent">
               {{ score.isExpanded ? '...collapse...' : '...expand...' }}
             </a>
           </td>
@@ -100,9 +100,9 @@ const props = defineProps({
           <td>{{ score.metrics }}</td>
           <td>{{ score.wordCount }}</td>
           <td>{{ (score.wordCount/score.predefinedQuestion.averageResponsesWordCount)*100 }}%</td>
-          <td>{{ score.positive }}</td>
-          <td>{{ score.neutral }}</td>
-          <td>{{ score.negative }}</td>
+          <td>{{ Math.round(score.positive*100) }}%</td>
+          <td>{{ Math.round(score.neutral*100) }}%</td>
+          <td>{{ Math.round(score.negative*100) }}%</td>
         </tr>
       </template>
     </template>
@@ -151,7 +151,7 @@ export default {
     async fetchUserData() {
       try {
         // Fetch user data from API (replace with your actual API URL)
-        const response = await axios.get('http://ratti.dynv6.net/candidate/all', config);
+        const response = await axios.get('http://localhost:8080/candidate/all', config);
         this.userList = response.data; // Set the users data
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -160,7 +160,7 @@ export default {
     async newCall(userid) {
       try {
         // Fetch user data from API (replace with your actual API URL)
-        const response = await axios.post(`http://ratti.dynv6.net/phonecall/callcandidate/${userid}`, config);
+        const response = await axios.post(`http://localhost:8080/phonecall/callcandidate/${userid}`, config);
       } catch (error) {
         console.error('Error making new call:', error);
       }
@@ -173,7 +173,7 @@ export default {
         // If not expanded, fetch the new content if not already fetched
         if (!score.newQuestion) {
           try {
-            const response = await axios.get(`http://ratti.dynv6.net/question/conversation/${call.id}/${score.predefinedQuestion.id}`, config);
+            const response = await axios.get(`http://localhost:8080/question/conversation/${call.id}/${score.predefinedQuestion.id}`, config);
             score.newQuestion = parseAndMergeResponse(response);
           } catch (error) {
             console.error("Error fetching the conversation:", error);
