@@ -99,7 +99,7 @@ const props = defineProps({
           <td>{{ score.predefinedQuestion.evaluationMetricCSV }}</td>
           <td>{{ score.metrics }}</td>
           <td>{{ score.wordCount }}</td>
-          <td>{{ (score.wordCount/score.predefinedQuestion.averageResponsesWordCount)*100 }}%</td>
+          <td>{{ Math.round((score.wordCount/score.predefinedQuestion.averageResponsesWordCount)*100) }}%</td>
           <td>{{ Math.round(score.positive*100) }}%</td>
           <td>{{ Math.round(score.neutral*100) }}%</td>
           <td>{{ Math.round(score.negative*100) }}%</td>
@@ -153,6 +153,12 @@ export default {
         // Fetch user data from API (replace with your actual API URL)
         const response = await axios.get('http://localhost:8080/candidate/all', config);
         this.userList = response.data; // Set the users data
+
+        this.userList.forEach(user => {
+          user.callList.forEach(call => {
+            call.scores.sort((a, b) => a.predefinedQuestion.number - b.predefinedQuestion.number);
+          });
+        });
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
