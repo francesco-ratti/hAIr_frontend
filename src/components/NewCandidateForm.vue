@@ -64,7 +64,7 @@ const props = defineProps({
             <td>
               <select id="locale" v-model="formData.locale" required class="form-control">
                 <option value="IT_IT">Italian (IT_IT)</option>
-                <option value="EN_EN">English (EN_EN)</option>
+                <option value="EN_US">English (EN_US)</option>
               </select>
             </td>
           </tr>
