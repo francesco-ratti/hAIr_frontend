@@ -1,5 +1,5 @@
-# appart-tenant-scoring
-Front-end for Appart, a tenant scoring solution.
+# hrAI
+Front-end for hrAI, an AI-based AI scoring solution.
 
 ### Additional resources
 Quick start guide with Vue.js: https://vuejs.org/guide/quick-start.html  
