@@ -1,5 +1,5 @@
 # hAIr
-Front-end for hrAI, an AI-based AI scoring solution.
+Front-end for hrAI, an AI-based tenant scoring solution.
 
 ### Additional resources
 Quick start guide with Vue.js: https://vuejs.org/guide/quick-start.html  
