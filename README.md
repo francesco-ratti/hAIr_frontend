@@ -1,4 +1,4 @@
-# hrAI
+# hAIr
 Front-end for hrAI, an AI-based AI scoring solution.
 
 ### Additional resources
